@@ -53,13 +53,13 @@ public class RoboMoveTest {
 	}
 
 	// Interactive user inputs from console
+	BufferedReader br = null;
 	try {
 	    StringTokenizer tokenizer;
 	    int x = 0, y = 0;
 	    Direction direction = null;
 	    Action action;
-	    BufferedReader br = new BufferedReader(new InputStreamReader(
-		    System.in));
+	    br = new BufferedReader(new InputStreamReader(System.in));
 
 	    String input;
 	    System.out
@@ -110,8 +110,15 @@ public class RoboMoveTest {
 	    System.err
 		    .println("Issue with io stream, please rerun the program --  "
 			    + e.getLocalizedMessage());
+	} finally {
+	    if (br != null) {
+		try {
+		    br.close();
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+	    }
 	}
 
     }
-
 }
